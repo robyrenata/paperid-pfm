@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Incomes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-row>
+    <ion-col size="12">
+      <div *ngIf="incomeList">
+        <ion-row *ngFor="let income of incomeList">
+          <ion-col>
+            <ion-card>
+              <ion-card-content>
+                <ion-row>
+                  <ion-col>
+                    <ion-label><b>{{income.name}}</b></ion-label>
+                  </ion-col>
+                  <ion-col class="ion-text-end"
+                    >{{income.date | date: 'd/MM/yyyy'}}</ion-col
+                  >
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12" class="ion-text-end"
+                    ><ion-text color="success"
+                      >Rp. {{income.amount | number}}</ion-text
+                    ></ion-col
+                  >
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </div>
+      <p *ngIf="!incomeList">You dont have any records yet.</p>
+    </ion-col>
+  </ion-row>
+  <ion-fab vertical="bottom" horizontal="end" edge slot="fixed" class="fab">
+    <ion-fab-button>
+      <ion-icon name="caret-up-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top" (click)="openModalAdd()">
+      <ion-fab-button><ion-icon name="add-outline"></ion-icon></ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

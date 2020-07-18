@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Expense</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-row>
+    <ion-col size="12">
+      <div *ngIf="expenseList">
+        <ion-row *ngFor="let expense of expenseList">
+          <ion-col>
+            <ion-card>
+              <ion-card-content>
+                <ion-row>
+                  <ion-col>
+                    <ion-label><b>{{expense.name}}</b></ion-label>
+                  </ion-col>
+                  <ion-col class="ion-text-end"
+                    >{{expense.date | date: 'd/MM/yyyy'}}</ion-col
+                  >
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12" class="ion-text-end"
+                    ><ion-text color="danger"
+                      >- Rp. {{expense.amount | number}}</ion-text
+                    ></ion-col
+                  >
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </div>
+      <p *ngIf="!expenseList">You dont have any records yet.</p>
+    </ion-col>
+  </ion-row>
+  <ion-fab vertical="bottom" horizontal="end" edge slot="fixed" class="fab">
+    <ion-fab-button>
+      <ion-icon name="caret-up-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top" (click)="openModalAdd()">
+      <ion-fab-button><ion-icon name="add-outline"></ion-icon></ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>
