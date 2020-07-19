@@ -8,6 +8,7 @@ import { IncomesPageRoutingModule } from "./incomes-routing.module";
 
 import { IncomesPage } from "./incomes.page";
 import { IncomesAddComponent } from "./incomes-add/incomes-add.component";
+import { LongPressModule } from "ionic-long-press";
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { IncomesAddComponent } from "./incomes-add/incomes-add.component";
     IonicModule,
     IncomesPageRoutingModule,
     ReactiveFormsModule,
+    LongPressModule,
   ],
   declarations: [IncomesPage, IncomesAddComponent],
 })

@@ -1,5 +1,8 @@
 import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
+import {
+  BrowserModule,
+  HAMMER_GESTURE_CONFIG,
+} from "@angular/platform-browser";
 import { RouteReuseStrategy } from "@angular/router";
 
 import { IonicModule, IonicRouteStrategy } from "@ionic/angular";
@@ -9,6 +12,7 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { IonicStorageModule } from "@ionic/storage";
+import { IonicGestureConfig } from "./utils/ionic-gesture-config";
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +27,10 @@ import { IonicStorageModule } from "@ionic/storage";
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: HAMMER_GESTURE_CONFIG,
+      useClass: IonicGestureConfig,
+    },
   ],
   bootstrap: [AppComponent],
 })

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { GlobalService } from "src/app/shared/services/global.service";
 import { ModalController } from "@ionic/angular";
@@ -13,6 +13,7 @@ export class ExpensesAddComponent implements OnInit {
   fg: FormGroup;
   submitted = false;
   currDate = new Date();
+  @Input() expenseData = null;
 
   constructor(
     private fb: FormBuilder,
@@ -21,26 +22,26 @@ export class ExpensesAddComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.initFormExpense();
+    this.initFormExpense(this.expenseData);
   }
 
-  initFormExpense() {
+  initFormExpense(data) {
     this._gs.validatorErrorMessage();
     this.fg = this.fb.group({
       date: [
-        null,
+        data.obj ? data.obj.date : null,
         RxwebValidators.compose({
           validators: [RxwebValidators.required()],
         }),
       ],
       name: [
-        null,
+        data.obj ? data.obj.name : null,
         RxwebValidators.compose({
           validators: [RxwebValidators.required()],
         }),
       ],
       amount: [
-        null,
+        data.obj ? data.obj.amount : null,
         RxwebValidators.compose({
           validators: [RxwebValidators.required(), RxwebValidators.numeric()],
         }),
@@ -48,15 +49,22 @@ export class ExpensesAddComponent implements OnInit {
     });
   }
 
-  addExpense() {
+  submitExpense() {
     this.submitted = true;
     if (this.fg.invalid) {
       return;
     } else {
-      const tempData = this._gs.userPfm.value;
-      tempData.data.expenses.push(this.fg.value);
-      this._gs.userPfm.next(tempData);
-      this.dismissModal();
+      if (!this.expenseData) {
+        const tempData = this._gs.userPfm.value;
+        tempData.data.expenses.push(this.fg.value);
+        this._gs.userPfm.next(tempData);
+        this.dismissModal();
+      } else {
+        const tempData = this._gs.userPfm.value;
+        tempData.data.expenses[this.expenseData.index] = this.fg.value;
+        this._gs.userPfm.next(tempData);
+        this.dismissModal();
+      }
     }
   }
 
