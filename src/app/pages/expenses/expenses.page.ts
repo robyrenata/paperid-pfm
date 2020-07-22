@@ -31,7 +31,7 @@ export class ExpensesPage implements OnInit {
     }
   }
 
-  async openModalAdd(expenseData) {
+  async openModalAdd(expenseData = null) {
     const modal = await this.modalCtrl.create({
       component: ExpensesAddComponent,
       componentProps: {

@@ -29,19 +29,19 @@ export class ExpensesAddComponent implements OnInit {
     this._gs.validatorErrorMessage();
     this.fg = this.fb.group({
       date: [
-        data.obj ? data.obj.date : null,
+        data ? data.obj.date : null,
         RxwebValidators.compose({
           validators: [RxwebValidators.required()],
         }),
       ],
       name: [
-        data.obj ? data.obj.name : null,
+        data ? data.obj.name : null,
         RxwebValidators.compose({
           validators: [RxwebValidators.required()],
         }),
       ],
       amount: [
-        data.obj ? data.obj.amount : null,
+        data ? data.obj.amount : null,
         RxwebValidators.compose({
           validators: [RxwebValidators.required(), RxwebValidators.numeric()],
         }),

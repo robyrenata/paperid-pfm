@@ -13,6 +13,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { IonicStorageModule } from "@ionic/storage";
 import { IonicGestureConfig } from "./utils/ionic-gesture-config";
+import { AndroidPermissions } from "@ionic-native/android-permissions/ngx";
 
 @NgModule({
   declarations: [AppComponent],
@@ -31,6 +32,7 @@ import { IonicGestureConfig } from "./utils/ionic-gesture-config";
       provide: HAMMER_GESTURE_CONFIG,
       useClass: IonicGestureConfig,
     },
+    AndroidPermissions,
   ],
   bootstrap: [AppComponent],
 })

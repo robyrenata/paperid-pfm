@@ -6,6 +6,7 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { CacheService } from "./shared/services/cache.service";
 import { GlobalService } from "./shared/services/global.service";
 import { Router } from "@angular/router";
+import { AndroidPermissions } from "@ionic-native/android-permissions/ngx";
 
 @Component({
   selector: "app-root",
@@ -23,6 +24,17 @@ export class AppComponent {
     private router: Router
   ) {
     this.initializeApp();
+  }
+
+  initializeApp() {
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+      this.afterInit();
+    });
+  }
+
+  afterInit() {
     this._cache.getStorage("pfm-user").then((res) => {
       this._gs.log("res????", res);
       if (!res) {
@@ -31,13 +43,6 @@ export class AppComponent {
         this._gs.userPfm.next(res);
         this._gs.log("gs user", this._gs.userPfm);
       }
-    });
-  }
-
-  initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
     });
   }
 }
