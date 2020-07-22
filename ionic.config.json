@@ -1,5 +1,7 @@
 {
   "name": "mini-pfm-paper",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

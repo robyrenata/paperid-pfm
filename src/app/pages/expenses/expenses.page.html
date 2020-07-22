@@ -75,7 +75,7 @@
     </ion-col>
   </ion-row>
   <ion-fab vertical="bottom" horizontal="end" edge slot="fixed" class="fab">
-    <ion-fab-button (click)="openModalAdd()" *ngIf="!selectMode">
+    <ion-fab-button (click)="openModalAdd(null)" *ngIf="!selectMode">
       <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
     <ion-fab-button (click)="goToModeFunction('delete')" *ngIf="selectMode">

@@ -34,7 +34,7 @@ export class IncomesPage implements OnInit {
     this._gs.log("income list", this.incomeList);
   }
 
-  async openModalAdd(incomeData) {
+  async openModalAdd(incomeData = null) {
     const modal = await this.modalController.create({
       component: IncomesAddComponent,
       componentProps: {

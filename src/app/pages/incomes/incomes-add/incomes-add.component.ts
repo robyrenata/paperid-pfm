@@ -13,7 +13,7 @@ export class IncomesAddComponent implements OnInit {
   fg: FormGroup;
   submitted = false;
   currDate = new Date();
-  @Input() incomeData = null;
+  @Input() incomeData;
   constructor(
     private fb: FormBuilder,
     private _gs: GlobalService,
